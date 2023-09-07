@@ -1,9 +1,10 @@
-import request from 'supertest';
-import express from 'express';
-import productsRouter from '../routes/productsRouter';
+const request = require('supertest');
+const express = require('express');
+const app = express();
+const productsRouter = require('../routes/productsRouter.js');
 
-// Import and mock controllers (ES6-style mock)
-jest.mock('../controllers/productsController', () => ({
+// Mock controllers
+jest.mock('../controllers/productController.js', () => ({
   getAllProducts: jest.fn((req, res) => res.sendStatus(200)),
   createProduct: jest.fn((req, res) => res.sendStatus(201)),
   getProductById: jest.fn((req, res) => res.sendStatus(200)),
@@ -12,8 +13,6 @@ jest.mock('../controllers/productsController', () => ({
   validateProductId: jest.fn((req, res, next) => next()),
   checkProducts: jest.fn((req, res, next) => next())
 }));
-
-const app = express();
 
 app.use('/products', productsRouter);
 
@@ -27,26 +26,34 @@ describe('Products Router', () => {
     const response = await request(app).get('/products');
     expect(response.status).toBe(200);
     expect(response.body).toEqual({});
+ 
+ 
   });
 
   it('should return a product by ID', async () => {
     const response = await request(app).get('/products/123');
     expect(response.status).toBe(200);
     expect(response.body).toEqual({});
+
+
   });
 
   it('should create a new product', async () => {
     const response = await request(app).post('/products').send({});
     expect(response.status).toBe(201);
+
+
   });
 
   it('should update a product by ID', async () => {
     const response = await request(app).put('/products/123').send({});
     expect(response.status).toBe(200);
+
   });
 
   it('should delete a product by ID', async () => {
     const response = await request(app).delete('/products/123');
     expect(response.status).toBe(200);
+
   });
 });

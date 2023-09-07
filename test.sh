@@ -11,7 +11,7 @@ for d in ${DIR[@]};
 fi
 done
 
-if [ -f ./controllers/productsController.js ] 
+if [ -f ./controllers/productController.js ] 
 then
       echo "Product Controller file exists"
     else
@@ -19,7 +19,7 @@ then
       exit 1
 fi
 
-if [ -f ./controllers/usersController.js ] 
+if [ -f ./controllers/Users.js ] 
 then
       echo "Users Controller file exists"
     else
