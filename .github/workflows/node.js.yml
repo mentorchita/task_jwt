@@ -18,3 +18,4 @@ jobs:
          chmod +x ./test.sh
          ./test.sh
         shell: bash
+      - run: npm test  
