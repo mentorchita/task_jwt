@@ -1,7 +1,7 @@
-import db from '../config/Database.js';
-import { v4 as uuidv4 } from 'uuid';
+const db = require('../config/Database.js');
+const { v4: uuidv4 } = require('uuid');
 
- const createProduct = async (title, price, desc) => {
+const createProduct = async function (title, price, desc) {
   const query = 'INSERT INTO product (id, title, price, description, createdAt) VALUES (?, ?, ?, ?, ?)';
   const dateCreate = new Date().toISOString().slice(0, 19).replace('T', ' ');
   
@@ -12,4 +12,4 @@ import { v4 as uuidv4 } from 'uuid';
   }
 };
 
-export default createProduct
+module.exports = createProduct;

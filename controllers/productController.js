@@ -1,12 +1,12 @@
-import db from '../config/Database.js';
-import productsService from '../services/productsService.js';
-import Product from '../models/ProductsModel.js';
+const db = require ( '../config/Database.js');
+const productsService = require ( '../services/productsService.js');
+const Product = require ( '../models/ProductsModel.js');
 
 const isValidProductId = (productId) => {
   return productId.match(/^[0-9a-fA-F\-]{36}$/); // Assuming the product ID is a 24-character hexadecimal string (MongoDB ObjectId)
 };
 
-export const getAllProducts = async (req, res) => {
+exports.getAllProducts = async (req, res) => {
   try {
     const products = await Product.findAll();
     res.json(products);
@@ -15,7 +15,7 @@ export const getAllProducts = async (req, res) => {
   }
 };
 
-export const getProductById = async (req, res) => {
+exports.getProductById = async (req, res) => {
   try {
     const product = await Product.findAll({
       where: {
@@ -33,7 +33,7 @@ export const getProductById = async (req, res) => {
   }
 };
 
-export const createProduct = async (req, res) => {
+exports.createProduct = async (req, res) => {
   try {
     await Product.create(req.body);
     res.json({
@@ -44,7 +44,7 @@ export const createProduct = async (req, res) => {
   }
 };
 
-export const updateProduct = async (req, res) => {
+exports.updateProduct = async (req, res) => {
   try {
     await Product.update(req.body, {
       where: {
@@ -59,7 +59,7 @@ export const updateProduct = async (req, res) => {
   }
 };
 
-export const deleteProduct = async (req, res) => {
+exports.deleteProduct = async (req, res) => {
   try {
     await Product.destroy({
       where: {
@@ -75,7 +75,7 @@ export const deleteProduct = async (req, res) => {
 };
 
 // Middleware function to check the correctness of the product ID
-export const validateProductId = (req, res, next) => {
+exports.validateProductId = (req, res, next) => {
   const productId = req.params.id;
 
   if (!isValidProductId(productId)) {
@@ -85,7 +85,7 @@ export const validateProductId = (req, res, next) => {
   next();
 };
 
-export const checkProducts = (req, res, next) => {
+exports.checkProducts = (req, res, next) => {
   const { title } = req.body;
 
   if (!title || title.trim() === '') {

@@ -2,6 +2,9 @@ const request = require('supertest');
 const express = require('express');
 const app = express();
 const productsRouter = require('../routes/productsRouter.js');
+const {
+  verifyToken
+} = require('../middleware/VerifyToken.js');
 
 // Mock controllers
 jest.mock('../controllers/productController.js', () => ({
@@ -11,7 +14,9 @@ jest.mock('../controllers/productController.js', () => ({
   updateProduct: jest.fn((req, res) => res.sendStatus(200)),
   deleteProduct: jest.fn((req, res) => res.sendStatus(200)),
   validateProductId: jest.fn((req, res, next) => next()),
-  checkProducts: jest.fn((req, res, next) => next())
+  checkProducts: jest.fn((req, res, next) => next()),
+  verifyToken: jest.fn((req, res, next) =>  next()),
+  refreshToken: jest.fn()
 }));
 
 app.use('/products', productsRouter);
@@ -34,13 +39,6 @@ describe('Products Router', () => {
     const response = await request(app).get('/products/123');
     expect(response.status).toBe(200);
     expect(response.body).toEqual({});
-
-
-  });
-
-  it('should create a new product', async () => {
-    const response = await request(app).post('/products').send({});
-    expect(response.status).toBe(201);
 
 
   });

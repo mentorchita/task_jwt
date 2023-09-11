@@ -1,5 +1,5 @@
-import { Sequelize } from "sequelize";
-import db from "../config/Database.js";
+const { Sequelize } = require ("sequelize");
+const db = require ("../config/Database.js");
 
 const { DataTypes } = Sequelize;
 
@@ -16,7 +16,7 @@ const Product = db.define('product', {
     freezeTableName: true
 });
 
-export default Product;
+module.exports = Product;
 
 ( async() => {
     await db.sync();

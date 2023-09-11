@@ -1,4 +1,4 @@
-import express from "express";
+const express =require ("express");
 
 
 const aboutRoute = express.Router();
@@ -12,4 +12,4 @@ aboutRoute.get("/", (req, res) => {
     res.json(aboutInfo)
 })
 
-export default aboutRoute
+module.exports = aboutRoute;

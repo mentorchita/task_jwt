@@ -1,4 +1,4 @@
-const db = require("../config/db.js");
+const db = require("../config/Database.js");
 const productsService = require("../services/productsService.js");
 const Product = require( "../models/ProductsModel.js");
 const productsController = require("../controllers/productController.js");
