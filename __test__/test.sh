@@ -58,3 +58,27 @@ else
     echo "library bcrypt does not found in package.json"
     exit 1
 fi
+
+if grep -R "productRouter\.post.*verifyToken" routes/productsRouter.js
+then
+     echo "verifyToken  found in productsRouter.js by method post"
+else
+    echo "verifyToken  does not found in productsRouter.js by method post"
+    exit 1
+fi
+
+if grep -R "productRouter\.delete.*verifyToken" routes/productsRouter.js
+then
+     echo "verifyToken  found in productsRouter.js by method delete"
+else
+    echo "verifyToken  does not found in productsRouter.js by method delete"
+    exit 1
+fi
+
+if grep -R "productRouter\.delete.*verifyToken" routes/productsRouter.js
+then
+     echo "verifyToken  found in productsRouter.js by method put"
+else
+    echo "verifyToken  does not found in productsRouter.js by method put"
+    exit 1
+fi

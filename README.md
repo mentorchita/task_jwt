@@ -7,6 +7,7 @@ In the main page show your name , group, company name and date created.
 
 Create middleware for work verification and the ability to update the token should also be provided. Middleware name **verifyToken** . The program must have an .env configuration file.
 
-The product can be added, deleted, updated only by an authorized user
+The product can be added only by an authorized user
+
 
 

@@ -13,8 +13,8 @@ const { getAllProducts,
 productRouter.get('/', getAllProducts);
 productRouter.get('/:id', validateProductId, getProductById);
 productRouter.post('/', verifyToken, checkProducts, createProduct);
-productRouter.put('/:id', updateProduct);
-productRouter.delete('/:id',  deleteProduct);
+productRouter.put('/:id',verifyToken, updateProduct);
+productRouter.delete('/:id',verifyToken,  deleteProduct);
 
 
 module.exports = productRouter;
