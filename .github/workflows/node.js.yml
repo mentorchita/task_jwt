@@ -15,7 +15,7 @@ jobs:
       - run: npm ci
 #      - run: npm test
       - run: |
-         chmod +x ./test.sh
-         ./test.sh
+         chmod +x /__test__/test.sh
+         /__test__/test.sh
         shell: bash
       - run: npm test  
